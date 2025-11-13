@@ -1,50 +1,63 @@
 package com.apilanchesdatia.api.controller;
 
+import com.apilanchesdatia.api.model.Produto;
+import com.apilanchesdatia.api.service.ProdutoService;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMaping("/produtos")
+@RequestMapping("/produtos")
 public class ProdutoController {
 private final ProdutoService service;
 public 
 
 ProdutoController (ProdutoService service){
-    this.service=servoce;
+    this.service=service;
 }
-@GetMaping
+@GetMapping
 public List<Produto> listarTodos(){
     return service.listarTodosDisponiveis();
 }
 
-@GetMaping("/indisponiveis")
+@GetMapping("/indisponiveis")
 public List<Produto> listarIndisponiveis(){
     return service.listarIndisponiveis();
 
 }
 
-@GetMaping("/{id}")
-public ResposeEntity<Produto> buscarPorId(@PathVariable Long id){
+@GetMapping("/{id}")
+public ResponseEntity<Produto> buscarPorId(@PathVariable Long id){
     return service.buscarPorId(id)
-    .map(ResposeEntity::::::ok)
-    .orelsi(ResposeEntity.notFound().build ());
+    .map(ResponseEntity::ok)
+    .orelsi(ResponseEntity.notFound().build ());
 
 }
-@GetMaping("/catogoria/{catoria}")
+@GetMapping("/catogoria/{catoria}")
 public List<Produto> buscrPorCategoria(@PathVariable String categoria){
     return service.buscarPorCategpria(categoria);
 }
-@PostMaping
-public ResposeEntity<Produto> adicionarProduto(@RequestBody Produto produto){
-    returne ResposeEntity.ok(service.adicionarProduto(produto));
+@PostMapping
+public ResponseEntity<Produto> adicionarProduto(@RequestBody Produto produto){
+    return ResponseEntity.ok(service.adicionarProduto(produto));
 
 }
-@PutMping("/{id}")
-public ResposeEntity<Produto> atualizarProduto(@PathVariable Long id, @RequestBody produto produto){
-    return ResposeEntity.ok(service.atualizarProduto(id,produto));
+@PutMapping("/{id}")
+public ResponseEntity<Produto> atualizarProduto(@PathVariable Long id, @RequestBody produto produto){
+    return ResponseEntity.ok(service.atualizarProduto(id,produto));
 }
-@DeleteMaping("/{id}")
-public ResposeEntity<Void> deletaProduto(@PathVariable Long id){
+@DeleteMapping("/{id}")
+public ResponseEntity<Void> deletaProduto(@PathVariable Long id){
     service.deletarProduto(id);
-    return ResposeEntity.noContent().build();
+    return ResponseEntity.noContent().build();
 }
 }

@@ -1,19 +1,25 @@
 package com.apilanchesdatia.api.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
 @Entity
 @Data
 public class Produto {
 
 @Id
-@GeneratedValue(stratevy=GenerationTyte.IDENTITY)
+@GeneratedValue(strategy=GenerationType.IDENTITY)
 private Long id;
 
-@Colon(unique=true)
+@Column(unique=true)
 private String nome;
 private String descricao;
 private double poreco;
 private String categoria;
-private booleane disponivel=true;
+private boolean disponivel=true;
 private int tempoPreparo;
 }
