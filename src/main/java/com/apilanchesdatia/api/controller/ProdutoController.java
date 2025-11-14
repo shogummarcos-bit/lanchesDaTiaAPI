@@ -1,7 +1,8 @@
 package com.apilanchesdatia.api.controller;
 
-import com.apilanchesdatia.api.model.Produto;
+import com.apilanchesdatia.api.models.Produto;
 import com.apilanchesdatia.api.service.ProdutoService;
+
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ ProdutoController (ProdutoService service){
 }
 @GetMapping
 public List<Produto> listarTodos(){
-    return service.listarTodosDisponiveis();
+    return service.listarTodos();
 }
 
 @GetMapping("/indisponiveis")
@@ -39,20 +40,20 @@ public List<Produto> listarIndisponiveis(){
 public ResponseEntity<Produto> buscarPorId(@PathVariable Long id){
     return service.buscarPorId(id)
     .map(ResponseEntity::ok)
-    .orelsi(ResponseEntity.notFound().build ());
+    .orElse(ResponseEntity.notFound().build ());
 
 }
 @GetMapping("/catogoria/{catoria}")
 public List<Produto> buscrPorCategoria(@PathVariable String categoria){
-    return service.buscarPorCategpria(categoria);
+    return service.buscarPorCategoria(categoria);
 }
 @PostMapping
-public ResponseEntity<Produto> adicionarProduto(@RequestBody Produto produto){
+public ResponseEntity<String> adicionarProduto(@RequestBody Produto produto){
     return ResponseEntity.ok(service.adicionarProduto(produto));
 
 }
 @PutMapping("/{id}")
-public ResponseEntity<Produto> atualizarProduto(@PathVariable Long id, @RequestBody produto produto){
+public ResponseEntity<Produto> atualizarProduto(@PathVariable Long id, @RequestBody Produto produto){
     return ResponseEntity.ok(service.atualizarProduto(id,produto));
 }
 @DeleteMapping("/{id}")
