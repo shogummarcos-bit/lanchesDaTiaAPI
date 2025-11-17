@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.apilanchesdatia.api.models.Produto;
 import com.apilanchesdatia.api.repository.ProdutoRepository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -55,7 +56,7 @@ public class ProdutoService {
         produto.setDescricao(produtoAtualizado.getDescricao());
         produto.setPreco(produtoAtualizado.getPreco());
         produto.setCategoria(produtoAtualizado.getCategoria());
-        produto.setDisponivel(produtoAtualizado.getDisponivel());
+        produto.setDisponivel(produtoAtualizado.isDisponivel());
         produto.setTempoPreparo(produtoAtualizado.getTempoPreparo());
 
         return repository.save(produto);

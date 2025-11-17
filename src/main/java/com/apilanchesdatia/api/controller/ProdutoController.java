@@ -43,15 +43,16 @@ public ResponseEntity<Produto> buscarPorId(@PathVariable Long id){
     .orElse(ResponseEntity.notFound().build ());
 
 }
-@GetMapping("/catogoria/{catoria}")
-public List<Produto> buscrPorCategoria(@PathVariable String categoria){
+@GetMapping("/categoria/{categoria}")
+public List<Produto> buscarPorCategoria(@PathVariable String categoria){
     return service.buscarPorCategoria(categoria);
 }
-@PostMapping
-public ResponseEntity<String> adicionarProduto(@RequestBody Produto produto){
-    return ResponseEntity.ok(service.adicionarProduto(produto));
 
+@PostMapping
+public ResponseEntity<Produto> adicionarProduto(@RequestBody Produto produto){
+    return ResponseEntity.ok(service.adicionarProduto(produto));
 }
+
 @PutMapping("/{id}")
 public ResponseEntity<Produto> atualizarProduto(@PathVariable Long id, @RequestBody Produto produto){
     return ResponseEntity.ok(service.atualizarProduto(id,produto));
