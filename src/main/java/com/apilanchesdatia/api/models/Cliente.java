@@ -10,15 +10,15 @@ import javax.annotation.processing.Generated;
 @Data
 public class Cliente{
     @Id
-    @GeneratedValue(strategy=GegnerationTyte.IENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String nomeCompleto;
     private String email;
-    private LocalDateTimedateCadastro~;
+    private LocalDateTime dataCadastro;
     private boolean ativo=true;
-    privite String preferncias;
-    privte String huistoricoCompras;
+    private String preferencias;
+    private String historicoCompras;
     private String cpf;
     private String pedidos;
-    
+
 }

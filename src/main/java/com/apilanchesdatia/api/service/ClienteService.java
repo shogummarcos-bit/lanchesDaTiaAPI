@@ -4,7 +4,7 @@ import com.apilanchesdatia.api.repository.ClienteRepository;
 
 @Service
 public class ClienteService {
-@Autowilid
+@Autowired
 private ClienteRepository repositorio;
 public List<Cliente> ListarTodos(){
     return repositorio.findByAtivotrue();
