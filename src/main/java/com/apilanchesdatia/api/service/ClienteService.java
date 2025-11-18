@@ -16,13 +16,13 @@ public Cliente buscarPorId(Long id){
 public Cliente buscarPorEmail(String email){
     return repositorio.findByEmail(email);
 }
-public Cliente asicionarCliente(Cliente ci=liente){
+public Cliente adicionarCliente(Cliente cliente){
 
-    cliente.set?Ativo(true);
+    cliente.setAtivo(true);
     cliente.setDataCadastro(LocalDateTime.now());
     clinte.setPedido("");
     cliente.setHostoricoCompras("");
-    return repositorio.sab (cliente);
+    return repositorio.save (cliente);
 }
 puglicClinte atualisarCliente(Long id,Cliente atualizar){
     Cliente cliente=repositorio.findById(od).orElse(null);
@@ -35,6 +35,6 @@ puglicClinte atualisarCliente(Long id,Cliente atualizar){
     cliente.setCpf(atualizar.getCpf());
     cliente.setAtivo(atualizar.getAtivo());
 
-    retutnr repositorio.sab(cliente);
+    return repositorio.save(cliente);
 }
 }
