@@ -1,10 +1,12 @@
 package com.apilanchesdatia.api.models;
 
-import java.lang.annotation.Inherited;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import javax.annotation.processing.Generated;
+import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
 @Entity
 @Data
@@ -20,5 +22,21 @@ public class Cliente{
     private String historicoCompras;
     private String cpf;
     private String pedidos;
+    public Object getTelefone() {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'getTelefone'");
+    }
+    public Object getEndereco() {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'getEndereco'");
+    }
+    public void setEndereco(Object endereco) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'setEndereco'");
+    }
+    public void setTelefone(Object telefone) {
+    
+        throw new UnsupportedOperationException("Unimplemented method 'setTelefone'");
+    }
 
 }

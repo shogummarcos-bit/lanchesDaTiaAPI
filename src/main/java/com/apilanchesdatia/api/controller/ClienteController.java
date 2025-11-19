@@ -23,13 +23,13 @@ public ClienteController(ClienteService service){
 }
 
 @GetMapping
-public List<ClienteController> listaTodos(){
+public List<Cliente> listaTodos(){
     return service.listarTodos();
 }
 @GetMapping("/id")
 public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id){
     Cliente cliente=service.buscarPorId(id);
-    if(cliente == null)return ResponseEntity.notFound().buid();
+    if(cliente == null)return ResponseEntity.notFound().build();
     return ResponseEntity.ok(cliente);
 }
 @GetMapping("/email/{email}")

@@ -8,36 +8,38 @@ import com.apilanchesdatia.api.repository.ProdutoRepository;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class ProdutoService {
 
     @Autowired
     private ProdutoRepository repository;
 
-    public List<Produto> listarTodos(){
+    public List<Produto> listarTodos() {
         return repository.findByDisponivelTrue();
     }
 
-    public List<Produto> listarIndisponiveis(){
+    public List<Produto> listarIndisponiveis() {
         return repository.findByDisponivelFalse();
     }
 
-    public Optional<Produto> buscarPorId(Long id){
+    public Optional<Produto> buscarPorId(Long id) {
+
+        if (id == null) return Optional.empty(); 
+
         return repository.findById(id);
     }
 
-    public List<Produto> buscarPorCategoria(String categoria){
+    public List<Produto> buscarPorCategoria(String categoria) {
         return repository.findByCategoria(categoria);
     }
 
-    public Produto adicionarProduto(Produto produto){
+    public Produto adicionarProduto(Produto produto) {
 
-        if(produto.getPreco() <= 0){
+        if (produto.getPreco() <= 0) {
             throw new IllegalArgumentException("O preço não pode ser negativo.");
         }
 
-        if(repository.existsByNome(produto.getNome())){
+        if (repository.existsByNome(produto.getNome())) {
             throw new IllegalArgumentException("Já existe um produto com esse nome.");
         }
 
@@ -47,10 +49,12 @@ public class ProdutoService {
         return repository.save(produto);
     }
 
-    public Produto atualizarProduto(Long id, Produto produtoAtualizado){
+    public Produto atualizarProduto(Long id, Produto produtoAtualizado) {
+
+        if (id == null) return null;  
 
         Produto produto = repository.findById(id).orElse(null);
-        if(produto == null) return null;
+        if (produto == null) return null;
 
         produto.setNome(produtoAtualizado.getNome());
         produto.setDescricao(produtoAtualizado.getDescricao());
@@ -62,11 +66,14 @@ public class ProdutoService {
         return repository.save(produto);
     }
 
-    public void deletarProduto(Long id){
+    public void deletarProduto(Long id) {
+
+        if (id == null) return; 
+
         repository.deleteById(id);
     }
 
-    private int definirTempoPreparo(String categoria){
+    private int definirTempoPreparo(String categoria) {
         return switch (categoria.toLowerCase()) {
             case "lanches" -> 12;
             case "bebidas" -> 3;
