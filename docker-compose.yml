@@ -9,10 +9,15 @@ services:
       MYSQL_USER: usuario
       MYSQL_PASSWORD: senha123
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - minha_rede:
-          driver: bridge 
-      
+      - minha_rede
+
+networks:
+  minha_rede:
+    driver: bridge
+
+volumes:
+  mysql_data:
